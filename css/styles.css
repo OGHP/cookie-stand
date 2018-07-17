@@ -1,0 +1,39 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    /* custom font */
+    font-family: 'Prosto One', cursive;
+    text-align: center;
+}
+
+#salmon-friends {
+    margin: 0 auto;
+    text-align: justify;
+    width: 95%;
+}
+
+#shop-awning {
+    margin-bottom: -21%;
+    margin-top: -13%;
+    width: 100%;
+}
+
+.salmon-styles {
+    vertical-align: top;
+    width: 35%;
+}
+
+#salmon-pic {
+    margin-right: 6%;
+}
+
+#salmon-cookies {
+    width: 18%;
+    margin-left: 3%;
+}
+
+#salmon-pic-reverse {
+    transform: scaleX(-1);
+}

@@ -2,14 +2,20 @@
 
 var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
+//global function
+// function getCustomersPerHour(min, max) {
+//     return Math.random() * (max - min) + min;
+// }
+
 //1st and Pike
 var shop1stAndPike = {
+    name: 'First and Pike',
     minCustomers: 23,
     maxCustomers: 65,
     averageCookiesPerCustomer: 6.3,
     cookiesPerHour: [],
     total: 0,
-    getCustomersPerHour: function getCustomersPerHour(min, max) {
+    getCustomersPerHour: function getCustomersPerHour(min, max) { //function as a method that belongs to the object
         return Math.random() * (max - min) + min;
     },
 };
@@ -51,6 +57,7 @@ allCookiesNeeded();
 var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 var shopSeaTacAirport = {
+    name: 'SeaTac Airport',
     minCustomers: 3,
     maxCustomers: 24,
     averageCookiesPerCustomer: 1.2,
@@ -98,6 +105,7 @@ totalCookiesNeeded();
 var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 var shopSeattleCenter = {
+    name: 'Seattle Center',
     minCustomers: 11,
     maxCustomers: 38,
     averageCookiesPerCustomer: 3.7,
@@ -144,6 +152,7 @@ eachCookieNeeded();
 var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 var shopCapitolHill = {
+    name: 'Capitol Hill',
     minCustomers: 20,
     maxCustomers: 38,
     averageCookiesPerCustomer: 2.3,
@@ -190,6 +199,7 @@ allTheCookiesNeeded();
 var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 var shopAlki = {
+    name: 'Alki',
     minCustomers: 2,
     maxCustomers: 16,
     averageCookiesPerCustomer: 4.6,

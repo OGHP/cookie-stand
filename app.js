@@ -92,8 +92,6 @@ new Store('Seattle Center', 23, 65, 6.3);
 
 
 //MY PROJECT BELOW
-//MY PROJECT BELOW
-//MY PROJECT BELOW
 
 // var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 

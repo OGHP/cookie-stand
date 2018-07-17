@@ -53,7 +53,6 @@ storeHours.appendChild(ulEl);
 //SeaTac Airport
 var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
-
 var shopSeaTacAirport = {
     minCustomers: 3,
     maxCustomers: 24,
@@ -83,4 +82,39 @@ for (var j = 0; j < storeHours.length; j++) {
 console.log(j);
 
 var storeHours = document.getElementById('shopSeaTacAirport');
+storeHours.appendChild(ulEl);
+
+
+//Seattle Center
+var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
+
+var shopSeattleCenter = {
+    minCustomers: 11,
+    maxCustomers: 38,
+    averageCookiesPerCustomer: 3.7,
+    cookiesPerHour: [],
+    getCustomersPerHour: function getCustomersPerHour(min, max) {
+        return Math.random() * (max - min) + min;
+    },
+};
+
+
+for (var i = 0; i < storeHours.length; i++) {
+    var customersPerHour = shopSeattleCenter.getCustomersPerHour(shopSeattleCenter.maxCustomers, shopSeattleCenter.minCustomers);
+    var cookiesPerHour = Math.ceil(shopSeattleCenter.averageCookiesPerCustomer * customersPerHour);
+    shopSeattleCenter.cookiesPerHour.push(cookiesPerHour);
+}
+console.log(i);
+
+var ulEl = document.createElement('ul');
+
+for (var j = 0; j < storeHours.length; j++) {
+    var liEl = document.createElement('li');
+    liEl.textContent = storeHours[j] + ':' + ' ' + shopSeattleCenter.cookiesPerHour[j] + ' cookies';
+    ulEl.appendChild(liEl);
+}
+
+console.log(j);
+
+var storeHours = document.getElementById('shopSeattleCenter');
 storeHours.appendChild(ulEl);

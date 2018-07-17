@@ -50,33 +50,33 @@ storeHours.appendChild(ulEl);
 
 
 //SeaTac Airport
-// var shopSeaTacAirport = {
-//     minCustomers: 3,
-//     maxCustomers: 24,
-//     averageCookiesPerCustomer: 1.2,
-//     cookiesPerHour: [],
-//     getCustomersPerHour: function getCustomersPerHour(min, max) {
-//         return Math.random() * (max - min) + min;
-//     },
-// };
+var shopSeaTacAirport = {
+    minCustomers: 3,
+    maxCustomers: 24,
+    averageCookiesPerCustomer: 1.2,
+    cookiesPerHour: [],
+    getCustomersPerHour: function getCustomersPerHour(min, max) {
+        return Math.random() * (max - min) + min;
+    },
+};
 
 
-// for (var i = 0; i < storeHours.length; i++) {
-//     var customersPerHour = shopSeaTacAirport.getCustomersPerHour(shopSeaTacAirport.maxCustomers, shopSeaTacAirport.minCustomers);
-//     var cookiesPerHour = Math.ceil(shopSeaTacAirport.averageCookiesPerCustomer * customersPerHour);
-//     shopSeaTacAirport.cookiesPerHour.push(cookiesPerHour);
-// }
-// console.log(i);
+for (var i = 0; i < storeHours.length; i++) {
+    var customersPerHour = shopSeaTacAirport.getCustomersPerHour(shopSeaTacAirport.maxCustomers, shopSeaTacAirport.minCustomers);
+    var cookiesPerHour = Math.ceil(shopSeaTacAirport.averageCookiesPerCustomer * customersPerHour);
+    shopSeaTacAirport.cookiesPerHour.push(cookiesPerHour);
+}
+console.log(i);
 
-// var ulEl = document.createElement('ul');
+var ulEl = document.createElement('ul');
 
-// for (var j = 0; j < storeHours.length; j++) {
-//     var liEl = document.createElement('li');
-//     liEl.textContent = storeHours[j] + ':' + ' ' + shopSeaTacAirport.cookiesPerHour[j] + ' cookies';
-//     ulEl.appendChild(liEl);
-// }
+for (var j = 0; j < storeHours.length; j++) {
+    var liEl = document.createElement('li');
+    liEl.textContent = storeHours[j] + ':' + ' ' + shopSeaTacAirport.cookiesPerHour[j] + ' cookies';
+    ulEl.appendChild(liEl);
+}
 
-// console.log(j);
+console.log(j);
 
-// var storeHours = document.getElementById('shopSeaTacAirport');
-// storeHours.appendChild(ulEl);
+var storeHours = document.getElementById('shopSeaTacAirport');
+storeHours.appendChild(ulEl);

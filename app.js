@@ -1,11 +1,70 @@
 'use-strict';
 
-var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
-
 //global function
-// function getCustomersPerHour(min, max) {
-//     return Math.random() * (max - min) + min;
-// }
+function generateRandom(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+//what we should have written
+var pike = {
+    name: 'First and Pike',
+    minCustomers: 23,
+    maxCustomers: 65,
+    avgSales: 6.3,
+    hours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
+    customersPerHour: [],
+    cookiesPerHour: [],
+    dailyTotal: 0,
+    calculateCustomers: function() {
+        // iterate through hours
+        // for each hour, run random generator
+        // push to customersPerHour
+        for(var hours of pike.hours) {  //"for each our" - this is the same as: for(var i = 0; i < pike.hours.length; i++)
+            var rando =  generateRandom(pike.minCustomers, pike.maxCustomers);
+            pike.customersPerHour.push(rando);
+        }
+    },
+    calculateSales: function() {
+        pike.calculateCustomers();
+        for(var numCustomers of pike.customersPerHour) {
+            var cookies = Math.ceil(pike.avgSales * numCustomers);
+            pike.cookiesPerHour.push(cookies);
+            pike.dailyTotal += cookies;
+        }
+    },
+    render : function() {
+        pike.calculateSales();
+
+        var ulEl = document.createElement('ul'); //create a new variable for the <ul>
+        var h2El = document.createElement('h2'); //create the <h2>
+        h2.El.textContent = pike.name; //create <h2> text
+        ulEl.appendChild(h2El); //append <h2> to the <ul>
+
+        for (var index in pike.hours) {  //create the loop for <li>'s
+            var liEl = document.createElement('li');
+            liEl.textContent = pike.hours[index] + ' : ' + pike.cookiesPerHour[index] + ' cookies';
+            ulEl.appendChild(liEl);
+        }
+
+        var liEltwo = document.createElement('li');  //create final <li> text & append
+        liEltwo.textContent = 'Total: ' + pike.dailyTotal;
+        ulEl.appendChild(liEltwo);
+
+        var mainEL = document.getElementById('main-content'); //finally, take all of this and append to <main>
+        mainEL.appendChild(ulEl);
+    },
+};
+
+//finally, run render() for each store we create!
+var stores = [pike, ];
+for (var store of stores) {
+    store.render();
+}
+
+
+//MY PROJECT BELOW
+
+var storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 //1st and Pike
 var shop1stAndPike = {

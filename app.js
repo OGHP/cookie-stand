@@ -21,17 +21,17 @@ function Store(name, minCustomers, maxCustomers, avgSales) {
 //added lecture notes from Wednesday day 8 (7/18/18)
 Store.prototype.generateRandom = function() {
     return Math.random() * (this.maxCustomers - this.minCustomers) + this.minCustomers;
-}
+};
 
 
-Store.prototype.calculateCustomersPerHour = function () { //calculate customers
+Store.prototype.calculateCustomersPerHour = function() { //calculate customers
     for (var hour of hours) {
         var randomNumOfCustomers = this.generateRandom();
         this.customersPerHour.push(randomNumOfCustomers);
     }
-}
+};
 
-Store.prototype.calculateSales = function () {  //calculate sales
+Store.prototype.calculateSales = function() {  //calculate sales
     this.calculateCustomersPerHour();
 
     for (var numberOfCustomers of this.customersPerHour) {
@@ -39,9 +39,9 @@ Store.prototype.calculateSales = function () {  //calculate sales
         this.cookiesSoldPerHour.push(cookies);
         this.dailyCookiesTotal += cookies;
     }
-}
+};
 
-Store.prototype.render = function () {
+Store.prototype.render = function() {
     this.calculateSales();
 
     //store rows
@@ -57,35 +57,35 @@ Store.prototype.render = function () {
         trStoreEl.appendChild(tdDataEl);
     }
 
-        var tdTotalEl = document.createElement('td'); //row for each store
-        tdTotalEl.textContent = this.dailyCookiesTotal;
-        trStoreEl.appendChild(tdTotalEl);
+    var tdTotalEl = document.createElement('td'); //row for each store
+    tdTotalEl.textContent = this.dailyCookiesTotal;
+    trStoreEl.appendChild(tdTotalEl);
 
-        tblEl.appendChild(trStoreEl);
-}
+    tblEl.appendChild(trStoreEl);
+};
 
-    function createTable() {
-        //table header
-        tblEl = document.createElement('table');  //create table
-        var trHeaderEl = document.createElement('tr');  //create header
-        var thBlankEl = document.createElement('th');
-        thBlankEl.textContent = '', //top of the store names column
-        trHeaderEl.appendChild(thBlankEl);
+function createTable() {
+    //table header
+    tblEl = document.createElement('table');  //create table
+    var trHeaderEl = document.createElement('tr');  //create header
+    var thBlankEl = document.createElement('th');
+    thBlankEl.textContent = '', //top of the store names column
+    trHeaderEl.appendChild(thBlankEl);
 
-        for (var index = 0; index < hours.length; index++) {  //iterate over store hours
-            var thEl = document.createElement('th');
-            thEl.textContent = hours[index];
-            trHeaderEl.appendChild(thEl);
-        }
-
-        var thTotalEl = document.createElement('th');
-        thTotalEl.textContent = 'Daily Total';
-        trHeaderEl.appendChild(thTotalEl);
-
-        tblEl.appendChild(trHeaderEl); //append header to table
-
-        document.getElementById('main-content').appendChild(tblEl); //go get the element then use the appendChild set it
+    for (var index = 0; index < hours.length; index++) {  //iterate over store hours
+        var thEl = document.createElement('th');
+        thEl.textContent = hours[index];
+        trHeaderEl.appendChild(thEl);
     }
+
+    var thTotalEl = document.createElement('th');
+    thTotalEl.textContent = 'Daily Total';
+    trHeaderEl.appendChild(thTotalEl);
+
+    tblEl.appendChild(trHeaderEl); //append header to table
+
+    document.getElementById('main-content').appendChild(tblEl); //go get the element then use the appendChild set it
+}
 
 //add each store
 new Store('First and Pike', 23, 65, 6.3);

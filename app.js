@@ -7,7 +7,7 @@ var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '
 
 
 function generateRandom(min, max) {
-    return Math.random() * (max - min) + min;
+return Math.random() * (max - min) + min;
 }
 
 function Store(name, minCustomers, maxCustomers, avgSales) {
@@ -18,7 +18,7 @@ function Store(name, minCustomers, maxCustomers, avgSales) {
     this.cookiesSoldPerHour = [];
     this.cookiesSoldPerStore = 0;
 
-    allStores.push(this) //takes everything in the Store function and puts it into the array above
+    allStores.push(this); //takes everything in the Store function and puts it into the array above
 }
 
 var pike = new Store('First and Pike', 23, 65, 6.3);
@@ -33,8 +33,13 @@ console.log(allStores);
 Store.prototype.randomCustomerPerHour = function () {
     return Math.ceil(Math.random() * (this.maxCustomers - this.minCustomers) + this.minCustomers);
 }
+
+//could this become a for loop? seems like it could be...thinking "DRY"
 allStores[0].randomCustomerPerHour();
-console.log('random customers:', allStores[0].randomCustomerPerHour());
+allStores[1].randomCustomerPerHour();
+allStores[2].randomCustomerPerHour();
+allStores[3].randomCustomerPerHour();
+allStores[4].randomCustomerPerHour();
 
 
 //get cookies per hour
@@ -45,286 +50,68 @@ Store.prototype.cookiesPerHour = function () {
         this.cookiesSoldPerHour.push(sales);
     }
 }
+
+//could this become a for loop? seems like it could be...thinking "DRY"
 allStores[0].cookiesPerHour();
+allStores[1].cookiesPerHour();
+allStores[2].cookiesPerHour();
+allStores[3].cookiesPerHour();
+allStores[4].cookiesPerHour();
 
 
-//total cookies per day/per store
+//total cookies sold per store
 Store.prototype.totalCookies = function () {
     for (var j = 0; j < this.cookiesSoldPerHour.length; j++) {
         this.cookiesSoldPerStore += this.cookiesSoldPerHour[j];
     }
-    console.log('total cookies per store:', totalCookies);
+    console.log(j)
 }
+
+//could this become a for loop? seems like it could be...thinking "DRY"
 allStores[0].totalCookies();
+allStores[1].totalCookies();
+allStores[2].totalCookies();
+allStores[3].totalCookies();
+allStores[4].totalCookies();
+
+// console.log('total cookies per store:', pike.cookiesSoldPerStore);
 
 
+//*****TABLE BELOW*****
+//4 of us worked on this for several hours..our code is likely extremely similar or identical
 
+//creates empty box in upper left
+var trEl = document.createElement('tr');
+var tdEl = document.createElement('td');
+tdEl.textContent = ' ';
+trEl.appendChild(tdEl);
 
-//loop over store hours to show the store hours
-// for (var j = 0; j < hours.length; i++) {
-//     pike.prototype.randomCustomerPerHour();
-//     pike.prototype.cookiesPerHour();
-//     seaTacAirport.prototype.randomCustomerPerHour();
-//     seaTacAirport.prototype.cookiesPerHour();
-// }
+// this is the head with the times **seems like the totals column should get factored in here somehow. Changed hours.length to include
+// a column for totals and now there is an empty column. Putting back to hours.length for now
+for (var x = 0; x < hours.length; x++) {
+    tdEl = document.createElement('td');
+    tdEl.textContent = hours[x];
+    trEl.appendChild(tdEl);
+}
 
+//appends loop to top row
+var headerEl = document.getElementById('cookie-table');
+headerEl.appendChild(trEl);
 
+//creates each of the rows up to 5 times
+for (var p = 0; p < 5; p++) {
+    var trEl2 = document.createElement('tr');
+    var tdEl2 = document.createElement('td');
+    trEl2.textContent = allStores[p].name;
 
+    // this for loop creates the columns in each row but doesn't account for the final column of total. I tried changing 'hours.length' to 16 but that
+    // only added an empty <td> to each store after the 8pm column. Putting back to hours.length for now
+    for (var q = 0; q < hours.length; q++) {
+        tdEl2 = document.createElement('td');
+        tdEl2.textContent = allStores[p].cookiesSoldPerHour[q];
+        trEl2.appendChild(tdEl2);
+    }
 
-// //First and Pike
-// var pike = {
-//     name: 'First and Pike',
-//     minCustomers: 23,
-//     maxCustomers: 65,
-//     avgSales: 6.3,
-//     hours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
-//     customersPerHour: [],
-//     cookiesPerHour: [],
-//     dailyTotal: 0,
-//     calculateCustomers: function () {
-//         // iterate through hours
-//         // for each hour, run random generator
-//         // push to customersPerHour
-//         for (var hours of pike.hours) {  //"for each our" - this is the same as: for(var i = 0; i < pike.hours.length; i++)
-//             var rando = generateRandom(pike.minCustomers, pike.maxCustomers);
-//             pike.customersPerHour.push(rando);
-//         }
-//     },
-//     calculateSales: function () {
-//         pike.calculateCustomers();
-//         for (var numCustomers of pike.customersPerHour) {
-//             var cookies = Math.ceil(pike.avgSales * numCustomers);
-//             pike.cookiesPerHour.push(cookies);
-//             pike.dailyTotal += cookies;
-//         }
-//     },
-//     render: function () {
-//         pike.calculateSales();
-
-//         var ulEl = document.createElement('ul'); //create a new variable for the <ul>
-//         var h2El = document.createElement('h2'); //create the <h2>
-//         h2El.textContent = pike.name; //create <h2> text
-//         ulEl.appendChild(h2El); //append <h2> to the <ul>
-
-//         for (var index in pike.hours) {  //create the loop for <li>'s
-//             var liEl = document.createElement('li');
-//             liEl.textContent = pike.hours[index] + ' : ' + pike.cookiesPerHour[index] + ' cookies';
-//             ulEl.appendChild(liEl);
-//         }
-
-//         var liEltwo = document.createElement('li');  //create final <li> text & append
-//         liEltwo.textContent = 'Total: ' + pike.dailyTotal;
-//         ulEl.appendChild(liEltwo);
-
-//         var mainEl = document.getElementById('main-content'); //finally, take all of this and append to <main>
-//         mainEl.appendChild(ulEl);
-//     },
-// };
-
-// //SeaTac Airport
-// var seaTacAirport = {
-//     name: 'SeaTac Airport',
-//     minCustomers: 23,
-//     maxCustomers: 65,
-//     avgSales: 6.3,
-//     hours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
-//     customersPerHour: [],
-//     cookiesPerHour: [],
-//     dailyTotal: 0,
-//     calculateCustomers: function () {
-//         // iterate through hours
-//         // for each hour, run random generator
-//         // push to customersPerHour
-//         for (var hours of seaTacAirport.hours) {
-//             var rando = generateRandom(seaTacAirport.minCustomers, seaTacAirport.maxCustomers);
-//             seaTacAirport.customersPerHour.push(rando);
-//         }
-//     },
-//     calculateSales: function () {
-//         seaTacAirport.calculateCustomers();
-//         for (var numCustomers of seaTacAirport.customersPerHour) {
-//             var cookies = Math.ceil(seaTacAirport.avgSales * numCustomers);
-//             seaTacAirport.cookiesPerHour.push(cookies);
-//             seaTacAirport.dailyTotal += cookies;
-//         }
-//     },
-//     render: function () {
-//         seaTacAirport.calculateSales();
-
-//         var ulEl = document.createElement('ul');
-//         var h2El = document.createElement('h2');
-//         h2El.textContent = seaTacAirport.name;
-//         ulEl.appendChild(h2El);
-
-//         for (var index in seaTacAirport.hours) {
-//             var liEl = document.createElement('li');
-//             liEl.textContent = seaTacAirport.hours[index] + ' : ' + seaTacAirport.cookiesPerHour[index] + ' cookies';
-//             ulEl.appendChild(liEl);
-//         }
-
-//         var liEltwo = document.createElement('li');
-//         liEltwo.textContent = 'Total: ' + seaTacAirport.dailyTotal;
-//         ulEl.appendChild(liEltwo);
-
-//         var mainEl = document.getElementById('main-content');
-//         mainEl.appendChild(ulEl);
-//     },
-// };
-
-// //Seattle Center
-// var seattleCenter = {
-//     name: 'Seattle Center',
-//     minCustomers: 11,
-//     maxCustomers: 38,
-//     avgSales: 3.7,
-//     hours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
-//     customersPerHour: [],
-//     cookiesPerHour: [],
-//     dailyTotal: 0,
-//     calculateCustomers: function () {
-//         // iterate through hours
-//         // for each hour, run random generator
-//         // push to customersPerHour
-//         for (var hours of seattleCenter.hours) {
-//             var rando = generateRandom(seattleCenter.minCustomers, seattleCenter.maxCustomers);
-//             seattleCenter.customersPerHour.push(rando);
-//         }
-//     },
-//     calculateSales: function () {
-//         seattleCenter.calculateCustomers();
-//         for (var numCustomers of seattleCenter.customersPerHour) {
-//             var cookies = Math.ceil(seattleCenter.avgSales * numCustomers);
-//             seattleCenter.cookiesPerHour.push(cookies);
-//             seattleCenter.dailyTotal += cookies;
-//         }
-//     },
-//     render: function () {
-//         seattleCenter.calculateSales();
-
-//         var ulEl = document.createElement('ul');
-//         var h2El = document.createElement('h2');
-//         h2El.textContent = seattleCenter.name;
-//         ulEl.appendChild(h2El);
-
-//         for (var index in seattleCenter.hours) {
-//             var liEl = document.createElement('li');
-//             liEl.textContent = seattleCenter.hours[index] + ' : ' + seattleCenter.cookiesPerHour[index] + ' cookies';
-//             ulEl.appendChild(liEl);
-//         }
-
-//         var liEltwo = document.createElement('li');
-//         liEltwo.textContent = 'Total: ' + seattleCenter.dailyTotal;
-//         ulEl.appendChild(liEltwo);
-
-//         var mainEl = document.getElementById('main-content');
-//         mainEl.appendChild(ulEl);
-//     },
-// };
-
-
-// //Capitol Hill
-// var capitolHill = {
-//     name: 'Capitol Hill',
-//     minCustomers: 20,
-//     maxCustomers:38,
-//     avgSales: 2.3,
-//     hours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
-//     customersPerHour: [],
-//     cookiesPerHour: [],
-//     dailyTotal: 0,
-//     calculateCustomers: function () {
-//         // iterate through hours
-//         // for each hour, run random generator
-//         // push to customersPerHour
-//         for (var hours of capitolHill.hours) {
-//             var rando = generateRandom(capitolHill.minCustomers, capitolHill.maxCustomers);
-//             capitolHill.customersPerHour.push(rando);
-//         }
-//     },
-//     calculateSales: function () {
-//         capitolHill.calculateCustomers();
-//         for (var numCustomers of capitolHill.customersPerHour) {
-//             var cookies = Math.ceil(capitolHill.avgSales * numCustomers);
-//             capitolHill.cookiesPerHour.push(cookies);
-//             capitolHill.dailyTotal += cookies;
-//         }
-//     },
-//     render: function () {
-//         capitolHill.calculateSales();
-
-//         var ulEl = document.createElement('ul');
-//         var h2El = document.createElement('h2');
-//         h2El.textContent = capitolHill.name;
-//         ulEl.appendChild(h2El);
-
-//         for (var index in capitolHill.hours) {
-//             var liEl = document.createElement('li');
-//             liEl.textContent = capitolHill.hours[index] + ' : ' + capitolHill.cookiesPerHour[index] + ' cookies';
-//             ulEl.appendChild(liEl);
-//         }
-
-//         var liEltwo = document.createElement('li');
-//         liEltwo.textContent = 'Total: ' + capitolHill.dailyTotal;
-//         ulEl.appendChild(liEltwo);
-
-//         var mainEl = document.getElementById('main-content');
-//         mainEl.appendChild(ulEl);
-//     },
-// };
-
-
-// //Alki
-// var alki = {
-//     name: 'Alki',
-//     minCustomers: 2,
-//     maxCustomers: 16,
-//     avgSales: 4.6,
-//     hours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
-//     customersPerHour: [],
-//     cookiesPerHour: [],
-//     dailyTotal: 0,
-//     calculateCustomers: function () {
-//         // iterate through hours
-//         // for each hour, run random generator
-//         // push to customersPerHour
-//         for (var hours of alki.hours) {
-//             var rando = generateRandom(alki.minCustomers, alki.maxCustomers);
-//             alki.customersPerHour.push(rando);
-//         }
-//     },
-//     calculateSales: function () {
-//         alki.calculateCustomers();
-//         for (var numCustomers of alki.customersPerHour) {
-//             var cookies = Math.ceil(alki.avgSales * numCustomers);
-//             alki.cookiesPerHour.push(cookies);
-//             alki.dailyTotal += cookies;
-//         }
-//     },
-//     render: function () {
-//         alki.calculateSales();
-
-//         var ulEl = document.createElement('ul');
-//         var h2El = document.createElement('h2');
-//         h2El.textContent = alki.name;
-//         ulEl.appendChild(h2El);
-
-//         for (var index in alki.hours) {
-//             var liEl = document.createElement('li');
-//             liEl.textContent = alki.hours[index] + ' : ' + alki.cookiesPerHour[index] + ' cookies';
-//             ulEl.appendChild(liEl);
-//         }
-
-//         var liEltwo = document.createElement('li');
-//         liEltwo.textContent = 'Total: ' + alki.dailyTotal;
-//         ulEl.appendChild(liEltwo);
-
-//         var mainEl = document.getElementById('main-content');
-//         mainEl.appendChild(ulEl);
-//     },
-// };
-
-// //finally, run render() for each store we create!
-// var stores = [pike, seaTacAirport, seattleCenter, capitolHill, alki];
-// for (var store of stores) {
-//     store.render();
-// }
+    var headerEl2 = document.getElementById('cookie-table');
+    headerEl2.appendChild(trEl2);
+}

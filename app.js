@@ -15,6 +15,8 @@ function Store(name, minCustomers, maxCustomers, avgSales) {
     this.minCustomers = minCustomers;
     this.maxCustomers = maxCustomers;
     this.avgSales = avgSales;
+    this.cookiesSoldPerHour = [];
+    this.cookiesSoldPerStore = 0;
 
     allStores.push(this) //takes everything in the Store function and puts it into the array above
 }
@@ -32,32 +34,39 @@ Store.prototype.randomCustomerPerHour = function () {
     return Math.ceil(Math.random() * (this.maxCustomers - this.minCustomers) + this.minCustomers);
 }
 allStores[0].randomCustomerPerHour();
-console.log(allStores[0].randomCustomerPerHour());
+console.log('random customers:', allStores[0].randomCustomerPerHour());
 
-//get sales per hour
+
+//get cookies per hour
 Store.prototype.cookiesPerHour = function () {
     for (var i =0; i < hours.length; i++) {
         var sales = Math.ceil(this.avgSales * this.randomCustomerPerHour());
-        console.log(sales);
-        return sales;
+        console.log('cookies sold per hour:', sales);
+        this.cookiesSoldPerHour.push(sales);
     }
 }
 allStores[0].cookiesPerHour();
 
 
+//total cookies per day/per store
+Store.prototype.totalCookies = function () {
+    for (var j = 0; j < this.cookiesSoldPerHour.length; j++) {
+        this.cookiesSoldPerStore += this.cookiesSoldPerHour[j];
+    }
+    console.log('total cookies per store:', totalCookies);
+}
+allStores[0].totalCookies();
 
-// stretch goal
-// Store.prototype.dailyTotal = function () {
-//     function allCookiesNeeded() {
-//         for (var allCookiesNeeded of this.cookiesPerHour) {
-//             this.total += this.cookiesPerHour;
-//         }
-//     }
+
+
+
+//loop over store hours to show the store hours
+// for (var j = 0; j < hours.length; i++) {
+//     pike.prototype.randomCustomerPerHour();
+//     pike.prototype.cookiesPerHour();
+//     seaTacAirport.prototype.randomCustomerPerHour();
+//     seaTacAirport.prototype.cookiesPerHour();
 // }
-
-
-
-// create the table here
 
 
 

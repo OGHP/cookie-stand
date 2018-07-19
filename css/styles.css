@@ -2,6 +2,10 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body {
+    background-color: bisque;
+}
+
 h1 {
     /* custom font */
     font-family: 'Prosto One', cursive;

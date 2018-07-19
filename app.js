@@ -21,17 +21,17 @@ function Store(name, minCustomers, maxCustomers, avgSales) {
 //added lecture notes from Wednesday day 8 (7/18/18)
 Store.prototype.generateRandom = function() {
     return Math.random() * (this.maxCustomers - this.minCustomers) + this.minCustomers;
-}
+};
 
 
-Store.prototype.calculateCustomersPerHour = function () { //calculate customers
+Store.prototype.calculateCustomersPerHour = function() { //calculate customers
     for (var hour of hours) {
         var randomNumOfCustomers = this.generateRandom();
         this.customersPerHour.push(randomNumOfCustomers);
     }
-}
+};
 
-Store.prototype.calculateSales = function () {  //calculate sales
+Store.prototype.calculateSales = function() {  //calculate sales
     this.calculateCustomersPerHour();
 
     for (var numberOfCustomers of this.customersPerHour) {
@@ -39,9 +39,9 @@ Store.prototype.calculateSales = function () {  //calculate sales
         this.cookiesSoldPerHour.push(cookies);
         this.dailyCookiesTotal += cookies;
     }
-}
+};
 
-Store.prototype.render = function () {
+Store.prototype.render = function() {
     this.calculateSales();
 
     //store rows
@@ -57,35 +57,50 @@ Store.prototype.render = function () {
         trStoreEl.appendChild(tdDataEl);
     }
 
-        var tdTotalEl = document.createElement('td'); //row for each store
-        tdTotalEl.textContent = this.dailyCookiesTotal;
-        trStoreEl.appendChild(tdTotalEl);
+    var tdTotalEl = document.createElement('td'); //row for each store
+    tdTotalEl.textContent = this.dailyCookiesTotal;
+    trStoreEl.appendChild(tdTotalEl);
 
-        tblEl.appendChild(trStoreEl);
+    tblEl.appendChild(trStoreEl);
+};
+
+function createTable() {
+    //table header
+    tblEl = document.createElement('table');  //create table
+    var trHeaderEl = document.createElement('tr');  //create header
+    var thBlankEl = document.createElement('th');
+    thBlankEl.textContent = ''; //top of the store names column
+    trHeaderEl.appendChild(thBlankEl);
+
+    for (var index = 0; index < hours.length; index++) {  //iterate over store hours
+        var thEl = document.createElement('th');
+        thEl.textContent = hours[index];
+        trHeaderEl.appendChild(thEl);
+    }
+
+    var thTotalEl = document.createElement('th');
+    thTotalEl.textContent = 'Daily Total';
+    trHeaderEl.appendChild(thTotalEl);
+
+    tblEl.appendChild(trHeaderEl); //append header to table
+
+    document.getElementById('main-content').appendChild(tblEl); //go get the element then use the appendChild set it
 }
 
-    function createTable() {
-        //table header
-        tblEl = document.createElement('table');  //create table
-        var trHeaderEl = document.createElement('tr');  //create header
-        var thBlankEl = document.createElement('th');
-        thBlankEl.textContent = '', //top of the store names column
-        trHeaderEl.appendChild(thBlankEl);
+//create stand alone footer (think how 'header' is built)
+//function to pull data from each column (for loop within a for loop)
+// function columnTotal()
+// function createFooter() {
 
-        for (var index = 0; index < hours.length; index++) {  //iterate over store hours
-            var thEl = document.createElement('th');
-            thEl.textContent = hours[index];
-            trHeaderEl.appendChild(thEl);
-        }
+//     var trFooterEl = document.createElement('tr');  //create footer using tr still??
+//     var tdHourlyTotalEl = document.createElement('th');
+//     tdHourlyTotalEl.textContent = 'Hourly Total';
+//     trFooterEl.appendChild(tdHourlyTotalEl); //append data to row
 
-        var thTotalEl = document.createElement('th');
-        thTotalEl.textContent = 'Daily Total';
-        trHeaderEl.appendChild(thTotalEl);
+//     tblEl.appendChild(trFooterEl); //append footer to table
 
-        tblEl.appendChild(trHeaderEl); //append header to table
-
-        document.getElementById('main-content').appendChild(tblEl); //go get the element then use the appendChild set it
-    }
+//     document.getElementById('main-content').appendChild(tblEl); //go get the element then use the appendChild set it
+// }
 
 //add each store
 new Store('First and Pike', 23, 65, 6.3);
@@ -96,6 +111,24 @@ new Store('Alki', 2, 16, 4.6);
 
 //create table
 createTable();
+
+
+//Event Listeners and Event Handlers with forms
+// Form Data
+var formEl = document.getElementById('main-form');
+formEl.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    console.log(allStores.length);
+
+    var name = event.target.name.value;
+    var minCustomers = event.target.minCustomer.value;
+    var maxCustomers = event.target.maxCustomer.value;
+    var avgSales = event.target.avgSales.value;
+
+    new Store(name, parseInt(minCustomers), parseInt(maxCustomers), parseInt(avgSales)).render();
+    console.log(allStores);
+});
 
 //FINALLY run render per store created
 for (var store of allStores) {

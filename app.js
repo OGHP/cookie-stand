@@ -101,3 +101,21 @@ createTable();
 for (var store of allStores) {
     store.render();
 }
+
+//Event Listeners and Event Handlers with forms
+
+// Form Data
+var formEl = document.getElementById('main-form');
+formEl.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    console.log(allStores.length);
+
+    var name = event.target.name.value;
+    var minCustomers = event.target.minCustomer.value;
+    var maxCustomers = event.target.maxCustomer.value;
+    var avgSales = event.target.avgSales.value;
+
+    new Store(name, minCustomers, maxCustomers, avgSales);
+    console.log(allStores);
+});

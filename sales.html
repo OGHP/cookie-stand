@@ -10,8 +10,24 @@
         <h1>Salmon Cookie Stand</h1>
     </header>
     <main class="main" id="main-content">
-        <table id="cookie-table"></table>
 
+        <h3>Add additional stores here:</h3>
+        <form id="main-form">
+            <p>New store name:
+                <input name="name" type="text">
+            </p>
+            <p>Minimum number of customers per hour:
+                <input name="minCustomer" type="number">
+            </p>
+            <p>Maximum number of customers per hour:
+                <input name="maxCustomer" type="number">
+            </p>
+            <p>Average sales:
+                <input name="avgSales" type="number">
+            </p>
+            <button type="submit">submit</button>
+        </form>
+    </main>
     <footer></footer>
     <script src="app.js"></script>
 </body>

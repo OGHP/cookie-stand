@@ -111,7 +111,7 @@ formEl.addEventListener('submit', function (event) {
     var maxCustomers = event.target.maxCustomer.value;
     var avgSales = event.target.avgSales.value;
 
-    new Store(name, parseInt(minCustomers), parseInt(maxCustomers), parseInt(avgSales)).render;
+    new Store(name, parseInt(minCustomers), parseInt(maxCustomers), parseInt(avgSales)).render();
     console.log(allStores);
 });
 

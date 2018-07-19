@@ -44,6 +44,7 @@ Store.prototype.calculateSales = function() {  //calculate sales
 Store.prototype.render = function() {
     this.calculateSales();
 
+    //Creating the table - for some reason I've started with the rows & data versus the header =( derp?
     //store rows
     var trStoreEl = document.createElement('tr'); //row for each store
     //create data

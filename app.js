@@ -69,7 +69,7 @@ function createTable() {
     tblEl = document.createElement('table');  //create table
     var trHeaderEl = document.createElement('tr');  //create header
     var thBlankEl = document.createElement('th');
-    thBlankEl.textContent = '', //top of the store names column
+    thBlankEl.textContent = ''; //top of the store names column
     trHeaderEl.appendChild(thBlankEl);
 
     for (var index = 0; index < hours.length; index++) {  //iterate over store hours
@@ -83,6 +83,21 @@ function createTable() {
     trHeaderEl.appendChild(thTotalEl);
 
     tblEl.appendChild(trHeaderEl); //append header to table
+
+    document.getElementById('main-content').appendChild(tblEl); //go get the element then use the appendChild set it
+}
+
+//create stand alone footer (think how 'header' is built)
+//function to pull data from each column (for loop within a for loop)
+// function columnTotal()
+function createFooter() {
+
+    var trFooterEl = document.createElement('tr');  //create footer using tr still??
+    var tdHourlyTotalEl = document.createElement('th');
+    tdHourlyTotalEl.textContent = 'Hourly Total';
+    trFooterEl.appendChild(tdHourlyTotalEl); //append data to row
+
+    tblEl.appendChild(trFooterEl); //append footer to table
 
     document.getElementById('main-content').appendChild(tblEl); //go get the element then use the appendChild set it
 }

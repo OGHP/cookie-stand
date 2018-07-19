@@ -97,13 +97,8 @@ new Store('Alki', 2, 16, 4.6);
 //create table
 createTable();
 
-//FINALLY run render per store created
-for (var store of allStores) {
-    store.render();
-}
 
 //Event Listeners and Event Handlers with forms
-
 // Form Data
 var formEl = document.getElementById('main-form');
 formEl.addEventListener('submit', function (event) {
@@ -116,6 +111,11 @@ formEl.addEventListener('submit', function (event) {
     var maxCustomers = event.target.maxCustomer.value;
     var avgSales = event.target.avgSales.value;
 
-    new Store(name, minCustomers, maxCustomers, avgSales);
+    new Store(name, parseInt(minCustomers), parseInt(maxCustomers), parseInt(avgSales)).render;
     console.log(allStores);
 });
+
+//FINALLY run render per store created
+for (var store of allStores) {
+    store.render();
+}

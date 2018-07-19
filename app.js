@@ -90,17 +90,17 @@ function createTable() {
 //create stand alone footer (think how 'header' is built)
 //function to pull data from each column (for loop within a for loop)
 // function columnTotal()
-function createFooter() {
+// function createFooter() {
 
-    var trFooterEl = document.createElement('tr');  //create footer using tr still??
-    var tdHourlyTotalEl = document.createElement('th');
-    tdHourlyTotalEl.textContent = 'Hourly Total';
-    trFooterEl.appendChild(tdHourlyTotalEl); //append data to row
+//     var trFooterEl = document.createElement('tr');  //create footer using tr still??
+//     var tdHourlyTotalEl = document.createElement('th');
+//     tdHourlyTotalEl.textContent = 'Hourly Total';
+//     trFooterEl.appendChild(tdHourlyTotalEl); //append data to row
 
-    tblEl.appendChild(trFooterEl); //append footer to table
+//     tblEl.appendChild(trFooterEl); //append footer to table
 
-    document.getElementById('main-content').appendChild(tblEl); //go get the element then use the appendChild set it
-}
+//     document.getElementById('main-content').appendChild(tblEl); //go get the element then use the appendChild set it
+// }
 
 //add each store
 new Store('First and Pike', 23, 65, 6.3);

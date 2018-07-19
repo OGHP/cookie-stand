@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Salmon Cookie Stand</title>
-    <!-- <link rel="stylesheet" href="css/reset.css" type="text/css" />
-    <link rel="stylesheet" href="css/sales.css" type="text/css" /> -->
+    <!-- <link rel="stylesheet" href="css/reset.css" type="text/css" /> I don't like how this resets the styles here -->
+    <link rel="stylesheet" href="css/sales.css" type="text/css" />
 </head>
 <body>
     <header>
@@ -11,21 +11,23 @@
     </header>
     <main class="main" id="main-content">
         <h3>Add additional stores here:</h3>
-        <form id="main-form">
-            <p>New store name:
-                <input name="name" type="text" required>
-            </p>
-            <p>Minimum number of customers per hour:
-                <input name="minCustomer" type="number" required>
-            </p>
-            <p>Maximum number of customers per hour:
-                <input name="maxCustomer" type="number" required>
-            </p>
-            <p>Average sales:
-                <input name="avgSales" type="number" required>
-            </p>
-            <button type="submit">submit</button>
-        </form>
+        <div id="new-store-form">
+            <form id="main-form">
+                <p>New store name:
+                    <input name="name" type="text" required>
+                </p>
+                <p>Minimum number of customers per hour:
+                    <input name="minCustomer" type="number" required>
+                </p>
+                <p>Maximum number of customers per hour:
+                    <input name="maxCustomer" type="number" required>
+                </p>
+                <p>Average sales:
+                    <input name="avgSales" type="number" required>
+                </p>
+                <button type="submit">submit</button>
+            </form>
+        </div>
     </main>
     <footer></footer>
     <script src="app.js"></script>

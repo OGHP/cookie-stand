@@ -32,6 +32,9 @@ nav {
 
 a {
     text-decoration: none;
+    font-family: 'Cookie', cursive;
+    color: salmon;
+    font-size: 5vh;
 }
 
 .intro-main {

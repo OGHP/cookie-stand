@@ -7,7 +7,7 @@ var allStores = []; //holds properties of every new instance that we create usin
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var hourlyTotals = [];
 
-console.log('all stores'. allStores);
+console.log('all stores', allStores);
 console.log('all stores cookier per hour', allStores.cookiesSoldPerHour);
 
 function Store(name, minCustomers, maxCustomers, avgSales) {
@@ -86,7 +86,7 @@ function createTable() {
         trHeaderEl.appendChild(thEl); //append the store hours to the table header
     }
 
-    //********* PROVIDING A NAME TO THE HEADER CELL FOR THE DAILY TOTALS COLUM ON LINE 66 ***********
+    //********* PROVIDING A NAME TO THE HEADER CELL FOR THE DAILY TOTALS COLUMN ON LINE 66 ***********
     var thTotalEl = document.createElement('th'); //creates a table header cell
     thTotalEl.textContent = 'Daily Total'; //this makes the table header cell have the text to say "Daily ToTal"
     trHeaderEl.appendChild(thTotalEl); //append table header cell with text to the table row

@@ -142,6 +142,7 @@ function calculateFooterTotals() {
 }
 
 //******CREATE THE FOOTER ROW**********
+// - - - USE tfoot - - - - -
 function createFooter() {
     var trFooterEl = document.createElement('tr'); //creates a new row
     var tdFooterCellEl = document.createElement('td'); //creates a new data cell

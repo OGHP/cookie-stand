@@ -2,7 +2,23 @@ h1 {
     /* custom font */
     font-family: 'Prosto One', cursive;
     font-size: 4vw;
-    display: inline-block
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.family-intro {
+    margin-bottom: 4%;
+    text-align: center;
+}
+
+.family-pic {
+    display: inline-block;
+    width: 30%;
+}
+
+.family {
+    display: inline-block;
+    width: 50%;
 }
 
 .chinook-pic {

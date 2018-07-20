@@ -10,34 +10,46 @@ h1 {
     /* custom font */
     font-family: 'Prosto One', cursive;
     text-align: center;
+    font-size: 4vw;
 }
 
-#salmon-friends {
+nav {
+    text-align: center;
+    width: 100%;
+}
+.main-fish {
     margin: 0 auto;
     text-align: justify;
     width: 95%;
 }
 
-#shop-awning {
-    margin-bottom: -21%;
+.intro {
+    display: inline-block;
+    max-width: 50%;
+}
+
+
+.shop-awning {
+    margin-bottom: -20%;
     margin-top: -13%;
     width: 100%;
 }
 
-.salmon-styles {
+.fish {
     vertical-align: top;
     width: 35%;
 }
 
-#salmon-pic {
+.salmon-pic {
     margin-right: 6%;
 }
 
-#salmon-cookies {
-    width: 18%;
-    margin-left: 3%;
+.shop-content {
+    max-width: 30%;
+    display: inline-block;
+    margin-left: 1.75%;
 }
 
-#salmon-pic-reverse {
-    transform: scaleX(-1);
+figcaption {
+    font-size: 1vw;
 }

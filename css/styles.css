@@ -78,3 +78,18 @@ figcaption {
     font-size: 1vw;
     text-align: center;
 }
+
+.footer {
+    text-align: center;
+    color: salmon;
+}
+
+.locations {
+    outline: 4px solid orange;
+    width: 96%;
+    margin: 0 auto;
+}
+
+.cookie-location {
+    display: inline-block;
+}

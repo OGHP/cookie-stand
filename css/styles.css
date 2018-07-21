@@ -38,6 +38,7 @@ a {
 }
 
 .intro-main {
+    margin-bottom: 30px;
     margin-top: 30px;
 }
 
@@ -52,11 +53,11 @@ a {
     max-width: 50%;
 }
 
-.shop-awning {
+/* .shop-awning {
     margin-bottom: -20%;
     margin-top: -13.5%;
     width: 100%;
-}
+} */
 
 .fish {
     vertical-align: top;
@@ -76,4 +77,19 @@ a {
 figcaption {
     font-size: 1vw;
     text-align: center;
+}
+
+.footer {
+    text-align: center;
+    color: salmon;
+}
+
+.locations {
+    outline: 4px solid orange;
+    width: 96%;
+    margin: 0 auto;
+}
+
+.cookie-location {
+    display: inline-block;
 }

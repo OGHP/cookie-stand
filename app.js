@@ -8,8 +8,6 @@ var allStores = []; //holds properties of every new instance that we create usin
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 var hourlyTotals = [];
 
-// console.log('all stores cookier per hour', allStores.cookiesSoldPerHour);
-
 function Store(name, minCustomers, maxCustomers, avgSales) {
     this.name = name; //allows us to instantiate a new instance of each store
     this.minCustomers = minCustomers;
@@ -20,21 +18,20 @@ function Store(name, minCustomers, maxCustomers, avgSales) {
     this.dailyCookiesTotal = 0;
 
     allStores.push(this); //takes everything in the Store function and puts it into the array above
-    nukeTotalRow();
-    //*****call create table******
-    createTable();
 
+    nukeTotalRow();
     this.render();
 
     calculateFooterTotals();
     createFooter();
+
+    createTable();
 }
 createHeaderAndGiveContent();
 
 
 console.log('all the stores', allStores);
 
-//added lecture notes from Wednesday day 8 (7/18/18)
 Store.prototype.generateRandom = function() {
     return Math.random() * (this.maxCustomers - this.minCustomers) + this.minCustomers;
 };
@@ -55,8 +52,6 @@ Store.prototype.calculateSales = function() { //calculate sales
         this.dailyCookiesTotal += cookies;
     }
 };
-// console.log('cookies sold per hour', pike.cookiesSoldPerHour);
-
 
 Store.prototype.render = function() {
     this.calculateSales();
@@ -74,7 +69,6 @@ Store.prototype.render = function() {
     }
 
     //***** CREATING THE CELL FOR THE DAILY TOTALS AND PROVIDING TEXT CONTENT FOR THE DAILY TOTALS *******
-
     //This creates the daily total column to show the cookies sold per store/day by row (per store)
     var tdTotalEl = document.createElement('td'); //one cell for the "daily total" column
     tdTotalEl.textContent = this.dailyCookiesTotal; //put the total amount of cookies sold per day/per store
@@ -105,35 +99,23 @@ function createTable() {
 }
 
 
-// var grandTotalOfAllHours = 0;
-// console.log('SC', seattleCenter.cookiesSoldPerHour);
-// console.log('seatac', seatac.cookiesSoldPerHour);
-
-
-//*******CREATE THE FOOTER ROW TOTALS AND PUSH TO ARRAY ABOVE (ON LINE 108)
+//*******CREATE THE FOOTER ROW TOTALS AND PUSH TO ARRAY ABOVE
 function calculateFooterTotals() {
-    var total = 0;
+    console.log('allStoresHere', allStores);
+    hourlyTotals = [];
 
-    for (var i = 0; i <hours.length; i++) { //loops over each hour
-        //resets when you switch columns
+    for (var i = 0; i < hours.length; i++) { //loops over each hour. resets when you switch columns
+        var total = 0;
 
         for (var j = 0; j < allStores.length; j++) { //loop over each of the 5 names
             total += allStores[j].cookiesSoldPerHour[i];
         }
-
         hourlyTotals.push(total); //push hourly totals to empty array
     }
-
-    //code for total of all totals
-    // will need
-
-    // grandTotalOfAllHours += total;
-    // tdGrandTotalEl.textContent = grandTotalOfAllHours; //give content
-    // console.log('grand total', grandTotalOfAllHours);
+    console.log('THEHOURLYTOTALS', hourlyTotals);
 }
 
 //******CREATE THE FOOTER ROW**********
-// - - - USE tfoot - - - - -
 function createFooter() {
     var trFooterEl = document.createElement('tr'); //creates a new row
     trFooterEl.setAttribute('id', 'total-row');
@@ -142,29 +124,22 @@ function createFooter() {
 
     trFooterEl.appendChild(tdFooterCellEl);
 
-    //loop through hours
-
-    for (var i = 0; i < hours.length; i++) {
+    for (var i = 0; i < hours.length; i++) { //loop through hours
         //this is creating the cells and giving them content
         var tdTotalEl = document.createElement('td');
         tdTotalEl.textContent = hourlyTotals[i]; //get hourly totals
-        // console.log(hourlyTotals);
         trFooterEl.appendChild(tdTotalEl); //append cells to footer row
-
     }
 
-    var tdGrandTotalEl = document.createElement('td'); //create
-    //text content
+    var tdGrandTotalEl = document.createElement('td');
     var grandTotalOfTotals = 0;
 
     for (var j =0; j < hourlyTotals.length; j++) {
         grandTotalOfTotals += hourlyTotals[j];
     }
+
     tdGrandTotalEl.textContent = grandTotalOfTotals;
-
     trFooterEl.appendChild(tdGrandTotalEl); //append cell to footer row
-    console.log('hourly total', hourlyTotals);
-
     tblEl.appendChild(trFooterEl);
 }
 
@@ -176,17 +151,11 @@ function nukeTotalRow () {
     }
 }
 
-
-
-
-
 //Event Listeners and Event Handlers with forms
-// Form Data
 var formEl = document.getElementById('main-form');
+
 formEl.addEventListener('submit', function (event) {
     event.preventDefault();
-
-    // console.log(allStores.length);
 
     var name = event.target.name.value;
     var minCustomers = event.target.minCustomer.value;
@@ -194,19 +163,15 @@ formEl.addEventListener('submit', function (event) {
     var avgSales = event.target.avgSales.value;
 
     new Store(name, parseInt(minCustomers), parseInt(maxCustomers), parseInt(avgSales));
-    // console.log(allStores);
+    // console.log('all the stores', allStores);
+    console.log('hourly totals'. hourlyTotals);
+
+    // event.target.reset();
 });
 
-//maybe  no need
-//FINALLY run render per store created
-// for (var store of allStores) {
-//     // store.render();
-// }
-
 //*****add each store*****
-var pike = new Store('First and Pike', 23, 65, 6.3);
-var seatac = new Store('SeaTac Airport', 3, 24, 1.2);
-var seattleCenter = new Store('Seattle Center', 11, 38, 3.7);
-var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
-var alki = new Store('Alki', 2, 16, 4.6);
-
+new Store('First and Pike', 23, 65, 6.3);
+new Store('SeaTac Airport', 3, 24, 1.2);
+new Store('Seattle Center', 11, 38, 3.7);
+new Store('Capitol Hill', 20, 38, 2.3);
+new Store('Alki', 2, 16, 4.6);
